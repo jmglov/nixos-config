@@ -74,6 +74,26 @@ in {
     enable = true;
     path = "...";
   };
+  programs.tmux = {
+    enable = true;
+    prefix = "M-m";
+    plugins = with pkgs.tmuxPlugins; [
+      {
+        plugin = resurrect;
+        extraConfig = ''
+          set -g @resurrect-capture-pane-contents 'on'
+          set -g @resurrect-strategy-nvim 'session'
+        '';
+      }
+      {
+        plugin = continuum;
+        extraConfig = ''
+          set -g @continuum-boot 'on'
+          set -g @continuum-restore 'on'
+        '';
+      }
+    ];
+  };
 
   services.screen-locker = {
     enable = true;
