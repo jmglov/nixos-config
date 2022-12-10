@@ -21,15 +21,17 @@ in {
 
   home.packages = with pkgs; [
     amarok
+    aspell
+    aspellDicts.en
     awscli
     aws-sam-cli
     babashka-bin
     bind
     discord
     emacsNativeComp
+    exiftool
     ffmpeg
     gimp
-    ideogram
     #(jetbrains.idea-community.override { jdk = openjdk11; })
     jq
     nixfmt
@@ -37,10 +39,12 @@ in {
     openjdk17
     pciutils
     ripgrep
+    shotcut
     slack
     unzip
     usbutils
     yarn
+    zip
     zoom-us
 
     pkgsChrome.google-chrome
