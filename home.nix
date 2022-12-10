@@ -5,9 +5,6 @@ let
     "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
   pkgsUnstable = import unstableTarball { config.allowUnfree = true; };
 
-  pkgsBabashka =
-    mkPkgsMain "2022-06-18" "cb058dc7ea65b3f853672386433ca628a1fced1f"
-    "18f97s87f1yvvnv800w0rlwsgsgv4yc3763syw4z5m7kywxqmr4j";
   pkgsChrome =
     mkPkgsMain "2022-06-12" "914ef51ffa88d9b386c71bdc88bffc5273c08ada"
     "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
@@ -17,6 +14,8 @@ let
   pkgsDiscord =
     mkPkgsMain "2022-06-12" "914ef51ffa88d9b386c71bdc88bffc5273c08ada"
     "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
+
+  babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
 in {
   nixpkgs.config.allowUnfree = true;
 
@@ -24,6 +23,7 @@ in {
     amarok
     awscli
     aws-sam-cli
+    babashka-bin
     bind
     emacsNativeComp
     ffmpeg
@@ -42,7 +42,6 @@ in {
     yarn
     zoom-us
 
-    pkgsBabashka.babashka
     pkgsChrome.google-chrome
     pkgsClojure.clojure
     pkgsDiscord.discord
