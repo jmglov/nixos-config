@@ -25,6 +25,7 @@ in {
     aws-sam-cli
     babashka-bin
     bind
+    discord
     emacsNativeComp
     ffmpeg
     gimp
@@ -44,7 +45,6 @@ in {
 
     pkgsChrome.google-chrome
     pkgsClojure.clojure
-    pkgsDiscord.discord
   ];
 
   programs.bash = {
