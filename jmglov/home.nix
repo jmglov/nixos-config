@@ -5,13 +5,7 @@ let
     "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
   pkgsUnstable = import unstableTarball { config.allowUnfree = true; };
 
-  pkgsChrome =
-    mkPkgsMain "2022-06-12" "914ef51ffa88d9b386c71bdc88bffc5273c08ada"
-    "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
   pkgsClojure =
-    mkPkgsMain "2022-06-12" "914ef51ffa88d9b386c71bdc88bffc5273c08ada"
-    "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
-  pkgsDiscord =
     mkPkgsMain "2022-06-12" "914ef51ffa88d9b386c71bdc88bffc5273c08ada"
     "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
 
@@ -32,6 +26,7 @@ in {
     exiftool
     ffmpeg
     gimp
+    google-chrome
     #(jetbrains.idea-community.override { jdk = openjdk11; })
     jq
     nixfmt
@@ -39,6 +34,7 @@ in {
     openjdk17
     pciutils
     ripgrep
+    rofimoji
     shotcut
     slack
     unzip
@@ -47,7 +43,6 @@ in {
     zip
     zoom-us
 
-    pkgsChrome.google-chrome
     pkgsClojure.clojure
   ];
 
