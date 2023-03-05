@@ -1,1 +1,5 @@
 result
+hardware-configuration.nix
+hostname.nix
+jmglov-password.nix
+root-password.nix

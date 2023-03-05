@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, hostName, ... }:
 with import ./lib { };
 let
   unstableTarball = builtins.fetchTarball
@@ -10,35 +10,40 @@ let
     "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
 
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
+  # Not working; probably need to update nixpkgs
+  # zoom-us = pkgs.callPackage ./pkgs/zoom-us { };
 in {
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    amarok
     aspell
     aspellDicts.en
     awscli
-    aws-sam-cli
     babashka-bin
     bind
     discord
     emacsNativeComp
     exiftool
     ffmpeg
+    fzf
     gimp
     google-chrome
+    htop
     #(jetbrains.idea-community.override { jdk = openjdk11; })
     jq
+    ncdu
     nixfmt
     nodejs
     openjdk17
     pciutils
+    pinta
     ripgrep
     rofimoji
-    shotcut
     slack
+    tree
     unzip
     usbutils
+    xclip
     yarn
     zip
     zoom-us
@@ -53,7 +58,10 @@ in {
       export AWS_PROFILE=jmglov
       export JAVA_HOME="${pkgs.openjdk17}"
       export PATH="$HOME/bin:$PATH"
-    '';
+    '' + (if builtins.pathExists ./bashrc-extra.nix then
+      import ./bashrc-extra.nix
+    else
+      "");
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
     shellOptions = [
       "checkhash"
@@ -66,7 +74,6 @@ in {
       "lithist"
     ];
   };
-  programs.direnv.enable = true;
   programs.firefox.enable = true;
   programs.home-manager = {
     enable = true;
@@ -98,4 +105,11 @@ in {
     inactiveInterval = 60;
     lockCmd = "${pkgs.i3lock}/bin/i3lock -n";
   };
-}
+} // (if hostName == "alhana" then {
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
+} else
+  { })
