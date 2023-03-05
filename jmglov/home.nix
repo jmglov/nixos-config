@@ -10,8 +10,6 @@ let
     "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
 
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
-  # Not working; probably need to update nixpkgs
-  # zoom-us = pkgs.callPackage ./pkgs/zoom-us { };
 in {
   nixpkgs.config.allowUnfree = true;
 
