@@ -5,10 +5,6 @@ let
     "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
   pkgsUnstable = import unstableTarball { config.allowUnfree = true; };
 
-  pkgsClojure =
-    mkPkgsMain "2022-06-12" "914ef51ffa88d9b386c71bdc88bffc5273c08ada"
-    "18n30qvl1mp531k0krnkr60jviifh75d21rgbxjnx186lkwi7sh3";
-
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
 in {
   nixpkgs.config.allowUnfree = true;
@@ -19,6 +15,7 @@ in {
     awscli
     babashka-bin
     bind
+    clojure
     discord
     emacsNativeComp
     exiftool
@@ -45,8 +42,6 @@ in {
     yarn
     zip
     zoom-us
-
-    pkgsClojure.clojure
   ];
 
   programs.bash = {
