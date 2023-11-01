@@ -6,8 +6,10 @@ let
   pkgsUnstable = import unstableTarball { config.allowUnfree = true; };
 
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
-in {
+in lib.recursiveUpdate {
   nixpkgs.config.allowUnfree = true;
+
+  home.stateVersion = "22.11";
 
   home.packages = with pkgs; [
     aspell
@@ -25,6 +27,7 @@ in {
     google-chrome
     htop
     #(jetbrains.idea-community.override { jdk = openjdk11; })
+    jless
     jq
     ncdu
     nixfmt
@@ -48,9 +51,10 @@ in {
     enable = true;
     bashrcExtra = ''
       export AWS_DEFAULT_REGION=eu-west-1
-      export AWS_PROFILE=jmglov
+      export AWS_PROFILE=pitch-dev
       export JAVA_HOME="${pkgs.openjdk17}"
-      export PATH="$HOME/bin:$PATH"
+      export NODE_PATH="$HOME/.npm-packages/lib/node_modules"
+      export PATH="$HOME/bin:$HOME/.npm-packages/bin:$PATH"
     '' + (if builtins.pathExists ./bashrc-extra.nix then
       import ./bashrc-extra.nix
     else
@@ -98,7 +102,7 @@ in {
     inactiveInterval = 60;
     lockCmd = "${pkgs.i3lock}/bin/i3lock -n";
   };
-} // (if hostName == "alhana" then {
+} (if hostName == "alhana" then {
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
