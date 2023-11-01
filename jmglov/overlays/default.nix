@@ -45,6 +45,22 @@ let
       });
     });
 
+  slack = (self: super:
+    let
+      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/slack/default.nix
+      version = "4.34.121"; # x86_64-linux-version
+      sha =
+        "11199dsp7phmz0bxlk5al61xp2g6yzgj17nwz0zrx1g7ak0qdvz5"; # x86_64-linux-sha256
+    in {
+      slack = super.slack.overrideAttrs (_: {
+        src = fetchurl {
+          url =
+            "https://downloads.slack-edge.com/releases/linux/${version}/prod/x64/slack-desktop-${version}-amd64.deb";
+          sha256 = sha;
+        };
+      });
+    });
+
   zoom-us = (self: super:
     let
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/zoom-us/default.nix
@@ -59,4 +75,4 @@ let
         };
       });
     });
-in [ chrome discord zoom-us ]
+in [ chrome discord slack zoom-us ]
