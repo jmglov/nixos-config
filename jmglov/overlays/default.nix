@@ -31,16 +31,31 @@ let
 
   discord = (self: super:
     let
-      # Get from nixpgs/apps/networking/im/discord/default.nix
-      discordVersion = "0.0.25";
-      discordSha = "sha256-WBcmy9fwGPq3Vs1+7lIOR7OiW/d0kZNIKp4Q5NRYBCw=";
+      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/discord/default.nix
+      version = "0.0.28";
+      sha = "sha256-JwxVVm/QIBLoVyQ2Ff/MX06UNgZ+dAsD960GsCg1M+U=";
     in {
       discord = super.discord.overrideAttrs (_: {
         src = fetchurl {
           url =
-            "https://dl.discordapp.net/apps/linux/${discordVersion}/discord-${discordVersion}.tar.gz";
-          sha256 = discordSha;
+            "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
+          sha256 = sha;
         };
       });
     });
-in [ chrome discord ]
+
+  zoom-us = (self: super:
+    let
+      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/zoom-us/default.nix
+      version = "5.15.5.5603";
+      hash = "sha256-JIS+jxBiW/ek47iz+yCcmoCZ8+UBzEXMC1Yd7Px0ofg=";
+    in {
+      zoom-us = super.zoom-us.overrideAttrs (_: {
+        inherit version;
+        src = fetchurl {
+          inherit hash;
+          url = "https://zoom.us/client/${version}/zoom_x86_64.pkg.tar.xz";
+        };
+      });
+    });
+in [ chrome discord zoom-us ]
