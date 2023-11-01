@@ -5,10 +5,11 @@ let
   chrome = (self: super:
     let
       pkgName = "google-chrome-stable";
-      # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/browsers/chromium/upstream-info.json
-      version = "110.0.5481.177";
+      # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/browsers/chromium/upstream-info.nix
+      version = "118.0.5993.117"; # ungoogled-chromium.version
       sha256 = sha256bin64;
-      sha256bin64 = "0sylaf8b0rzr82dg7safvs5dxqqib26k4j6vlm75vs99dpnlznj2";
+      sha256bin64 =
+        "sha256-RJcyIA0TdXWRk+K2GVcHSv4OSq5c6Y7InUblao3uusc="; # ungoogled-chromium.hash_deb_amd64
     in {
       google-chrome = super.google-chrome.override {
         chromium = {
