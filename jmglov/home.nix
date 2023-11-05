@@ -55,8 +55,8 @@ in lib.recursiveUpdate {
       export JAVA_HOME="${pkgs.openjdk17}"
       export NODE_PATH="$HOME/.npm-packages/lib/node_modules"
       export PATH="$HOME/bin:$HOME/.npm-packages/bin:$PATH"
-    '' + (if builtins.pathExists ./bashrc-extra.nix then
-      import ./bashrc-extra.nix
+    '' + (if builtins.pathExists ./bashrc-${hostName}.nix then
+      import ./bashrc-${hostName}.nix
     else
       "");
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
