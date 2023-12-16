@@ -30,6 +30,7 @@ in lib.recursiveUpdate {
     jless
     jq
     kazam
+    mplayer
     ncdu
     nixfmt
     nodejs
