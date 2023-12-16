@@ -6,10 +6,10 @@ let
     let
       pkgName = "google-chrome-stable";
       # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/browsers/chromium/upstream-info.nix
-      version = "118.0.5993.117"; # ungoogled-chromium.version
+      version = "120.0.6099.109"; # ungoogled-chromium.version
       sha256 = sha256bin64;
       sha256bin64 =
-        "sha256-RJcyIA0TdXWRk+K2GVcHSv4OSq5c6Y7InUblao3uusc="; # ungoogled-chromium.hash_deb_amd64
+        "sha256-ScFJQB9fY1cWHtFO8GpQ8yuCLaO1AvyAV5lbnqSrPCs="; # ungoogled-chromium.hash_deb_amd64
     in {
       google-chrome = super.google-chrome.override {
         chromium = {
