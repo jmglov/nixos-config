@@ -29,6 +29,7 @@ in lib.recursiveUpdate {
     #(jetbrains.idea-community.override { jdk = openjdk11; })
     jless
     jq
+    kazam
     ncdu
     nixfmt
     nodejs
