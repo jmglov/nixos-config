@@ -64,8 +64,8 @@ let
   zoom-us = (self: super:
     let
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/zoom-us/default.nix
-      version = "5.15.5.5603";
-      hash = "sha256-JIS+jxBiW/ek47iz+yCcmoCZ8+UBzEXMC1Yd7Px0ofg=";
+      version = "5.16.10.668";
+      hash = "sha256-dZQHbpvU8uNafmHtGoPhj6WsDhO20Dma/XwY6oa3Xes=";
     in {
       zoom-us = super.zoom-us.overrideAttrs (_: {
         inherit version;
