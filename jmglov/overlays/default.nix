@@ -30,6 +30,21 @@ let
       };
     });
 
+  brave = (self: super:
+    let
+      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/browsers/brave/default.nix
+      version = "1.61.101";
+      sha = "sha256-s+YjTZs+dT/T/MSzOAvXMHzd3pWMbLa8v9amnd2sqns=";
+    in {
+      brave = super.brave.overrideAttrs (_: {
+        src = fetchurl {
+          url =
+            "https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_amd64.deb";
+          hash = sha;
+        };
+      });
+    });
+
   discord = (self: super:
     let
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/discord/default.nix
@@ -75,4 +90,4 @@ let
         };
       });
     });
-in [ chrome discord slack zoom-us ]
+in [ brave chrome discord slack zoom-us ]

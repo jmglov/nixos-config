@@ -17,6 +17,7 @@ in lib.recursiveUpdate {
     awscli
     babashka-bin
     bind
+    brave
     clojure
     discord
     emacsNativeComp
