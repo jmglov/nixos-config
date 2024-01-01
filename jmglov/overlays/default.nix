@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, hostName, ... }:
 let
-  inherit (pkgs) fetchurl stdenv;
+  inherit (pkgs) fetchFromGitHub fetchurl stdenv;
 
   chrome = (self: super:
     let
@@ -60,6 +60,23 @@ let
       });
     });
 
+  rpi-imager = (self: super:
+    let
+      # https://github.com/NixOS/nixpkgs/blob/nixos-23.05/pkgs/tools/misc/rpi-imager/default.nix
+      version = "1.7.4";
+      sha = "sha256-ahETmUhlPZ3jpxmzDK5pS6yLc6UxCJFOtWolAtSrDVQ=";
+    in {
+      rpi-imager = super.rpi-imager.overrideAttrs (parent: rec {
+        src = fetchFromGitHub {
+          owner = "raspberrypi";
+          repo = parent.pname;
+          rev = "v${version}";
+          sha256 = sha;
+        };
+        sourceRoot = "${src.name}/src";
+      });
+    });
+
   slack = (self: super:
     let
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/slack/default.nix
@@ -91,3 +108,4 @@ let
       });
     });
 in [ brave chrome discord slack zoom-us ]
+++ (if hostName == "laurana" then [ rpi-imager ] else [ ])

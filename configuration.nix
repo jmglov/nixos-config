@@ -18,7 +18,7 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = import ./jmglov/overlays { inherit pkgs; };
+  nixpkgs.overlays = import ./jmglov/overlays { inherit pkgs hostName; };
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
