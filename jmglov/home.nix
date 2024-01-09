@@ -10,8 +10,6 @@ let
 in lib.recursiveUpdate {
   nixpkgs.config.allowUnfree = true;
 
-  home.stateVersion = "22.11";
-
   home.packages = with pkgs; [
     aspell
     aspellDicts.en
@@ -115,10 +113,13 @@ in lib.recursiveUpdate {
     lockCmd = "${pkgs.i3lock}/bin/i3lock -n";
   };
 } (if hostName == "alhana" then {
+  home.stateVersion = "22.11";
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
     nix-direnv.enable = true;
   };
+} else if hostName == "laurana" then {
+  home.stateVersion = "22.05";
 } else
   { })
