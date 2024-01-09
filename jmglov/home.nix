@@ -62,10 +62,10 @@ in lib.recursiveUpdate {
     enable = true;
     bashrcExtra = ''
       export AWS_DEFAULT_REGION=eu-west-1
-      export AWS_PROFILE=pitch-dev
+      export AWS_PROFILE=jmglov
       export JAVA_HOME="${pkgs.openjdk17}"
-      export NODE_PATH="$HOME/.npm-packages/lib/node_modules"
-      export PATH="$HOME/bin:$HOME/.npm-packages/bin:$PATH"
+      export PATH="$HOME/bin:$HOME/.babashka/bin:$PATH"
+      export PS1="\n\[\033[1;32m\]\[\e]0;: \w\a\]: \W;\[\033[0m\] "
     '' + (if builtins.pathExists ./bashrc-${hostName}.nix then
       import ./bashrc-${hostName}.nix
     else
