@@ -6,6 +6,7 @@ let
   pkgsUnstable = import unstableTarball { config.allowUnfree = true; };
 
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
+  bbin = pkgs.callPackage ./pkgs/bbin { };
 in lib.recursiveUpdate {
   nixpkgs.config.allowUnfree = true;
 
@@ -16,13 +17,14 @@ in lib.recursiveUpdate {
     aspellDicts.en
     awscli
     babashka-bin
+    bbin
     bind
     brave
     clojure
     discord
     emacsNativeComp
     exiftool
-    ffmpeg
+    ffmpeg-full
     fzf
     gimp
     google-chrome
@@ -38,10 +40,16 @@ in lib.recursiveUpdate {
     openjdk17
     pciutils
     pinta
+    qbittorrent
     ripgrep
     rofimoji
+    # rpi-imager  ## not currently building
+    shfmt
+    shellcheck
+    shotcut
     slack
     tree
+    terraform
     unzip
     usbutils
     xclip
@@ -74,6 +82,7 @@ in lib.recursiveUpdate {
       "lithist"
     ];
   };
+  programs.direnv.enable = true;
   programs.firefox.enable = true;
   programs.home-manager = {
     enable = true;
