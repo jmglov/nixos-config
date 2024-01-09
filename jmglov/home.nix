@@ -41,7 +41,7 @@ in lib.recursiveUpdate {
     qbittorrent
     ripgrep
     rofimoji
-    # rpi-imager  ## not currently building
+    rpi-imager
     shfmt
     shellcheck
     shotcut
