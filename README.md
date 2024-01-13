@@ -103,3 +103,73 @@ Try regenerating the hardware config and then rebuilding again:
 sudo nixos-generate-config
 sudo nixos-rebuild switch --upgrade
 ```
+
+## Rescuing NixOS
+
+Boot off NixOS installer USB stick, then:
+
+``` text
+sudo -i
+
+# Find HDD device
+lsblk
+# => NAME          MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+#    loop0           7:0    0 787.3M  1 loop  /nix/.ro-store
+#    sda             8:0    1   7.2G  0 disk
+#    ├─sda1          8:1    1   820M  0 part  /iso
+#    └─sda2          8:2    1     3G  0 part
+#    nvme0n1       259:0    0 476.9G  0 disk
+#    ├─nvme0n1p1   259:1    0   500M  0 part
+#    └─nvme0n1p2   259:2    0 476.5G  0 part
+
+LUKS_DEV=nvme0n1p2
+cryptsetup luksOpen /dev/$HDD_DEV enc-pv
+```
+
+### Renaming an LVM group
+
+I originally created the LVM group as `vg` on both of my laptops, but this makes
+it tricky to mount one drive on the other laptop in case of needing to back it
+up (don't ask me how I found this out). I decided instead to rename the vg
+`vg-{hostname}`:
+
+``` text
+HOSTNAME=alhana
+BOOT_DEV=nvme0n1p1
+
+# Find VG UUID
+vgdisplay
+# =>   --- Volume group ---
+#      VG Name               vg
+#      System ID
+#      Format                lvm2
+#      Metadata Areas        1
+#      Metadata Sequence No  3
+#      VG Access             read/write
+#      VG Status             resizable
+#      MAX LV                0
+#      Cur LV                2
+#      Open LV               2
+#      Max PV                0
+#      Cur PV                1
+#      Act PV                1
+#      VG Size               <893.75 GiB
+#      PE Size               4.00 MiB
+#      Total PE              228799
+#      Alloc PE / Size       228799 / <893.75 GiB
+#      Free  PE / Size       0 / 0
+#      VG UUID               w7qJ3f-invQ-Jz43-PZhY-pRYr-607I-Epc8rt
+
+VG_UUID=$(vgdisplay | tail -n 2 | head -n 1 | awk '{ print $3 }')
+lvm vgrename $VG_UUID vg-$HOSTNAME
+
+mount /dev/vg-$HOSTNAME/root /mnt
+mount /dev/$BOOT_DEV /mnt/boot
+swapon /dev/vg-$HOSTNAME/swap
+
+wpa_passphrase SSID PASSPHRASE >/etc/wpa_supplicant.conf
+systemctl start wpa_supplicant
+nixos-generate-config --root /mnt
+nix-enter
+nixos-rebuild --install-bootloader boot
+```
