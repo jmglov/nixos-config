@@ -7,9 +7,11 @@ here, help yourself with my compliments! 😀
 
 ``` text
 sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos  # or latest version
-sudo nix-channel update
-sudo nixos-rebuild switch --upgrade
+sudo nix-channel --update
+sudo nixos-rebuild boot --upgrade
 ```
+
+Then reboot to complete the upgrade.
 
 ### Troubleshooting
 
