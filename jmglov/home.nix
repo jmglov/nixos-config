@@ -27,6 +27,7 @@ in lib.recursiveUpdate {
     gimp
     google-chrome
     htop
+    imagemagick
     #(jetbrains.idea-community.override { jdk = openjdk11; })
     jless
     jq
