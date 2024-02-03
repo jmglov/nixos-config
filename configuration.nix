@@ -11,9 +11,7 @@ let
   hostName = import ./hostname.nix;
   validHostNames = [ "alhana" "laurana" ];
 
-  pkgsMullvadVPN =
-    mkPkgsMain "2023-12-17" "8a9698b0914775be8a426fe94b83d512571eb06a"
-    "sha256:0xn7ix1kk92f16xlvc690jr9kwbmrhg65d47bnrk5370yid5cbri";
+  # https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/networking/protonvpn-gui
   pkgsProtonVPN =
     mkPkgsMain "2023-12-07" "cf53751a16df6ae52eb3be7019aa9c34017e490b"
     "sha256:0sz5p63j83a961mjykssn7x2gb23ngfrn3dkdjmkw79iazq42xb1";
@@ -171,9 +169,6 @@ in lib.recursiveUpdate {
     wget
     xfce.xfce4-terminal
 
-    mullvad-vpn
-    # pkgsMullvadVPN.mullvad-vpn  ## Latest version; not working
-
     pkgsProtonVPN.protonvpn-gui
   ];
 
@@ -201,7 +196,7 @@ in lib.recursiveUpdate {
 
   # List services that you want to enable:
 
-  services.mullvad-vpn.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
