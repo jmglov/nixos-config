@@ -7,7 +7,9 @@ with import ./jmglov/lib { };
 let
   home-manager = builtins.fetchTarball
     "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+
   hostName = import ./hostname.nix;
+  validHostNames = [ "alhana" "laurana" ];
 
   pkgsMullvadVPN =
     mkPkgsMain "2023-12-17" "8a9698b0914775be8a426fe94b83d512571eb06a"
@@ -65,7 +67,7 @@ in lib.recursiveUpdate {
 
   # For wpa_supplicant, uncomment:
   #  networking.wireless.enable = true;
-  #  networking.wireless.interfaces = [ "wlp6s0" ];
+  #  networking.wireless.interfaces = [ if hostName == "alhana" then "wlp0s20fs" else "wlp6s0" ];
   #  networking.wireless.networks = {
   #    jmglov = {
   #      # Generated with: wpa_passphrase ESSID PSK
@@ -124,8 +126,12 @@ in lib.recursiveUpdate {
 
   users.mutableUsers = false;
 
-  users.users.root.hashedPassword =
-    "$6$qIbRypB1hH$bEgHr79qEl3r81H.AxGo5rqIEZxcF4tu2swxE0uo/vgnAL7ln4UeZiKyu9Z6dhC7oDfyfcYbvNREGEoR1q/xr1";
+  users.users.root.hashedPassword = if hostName == "alhana" then
+    "$6$qIbRypB1hH$bEgHr79qEl3r81H.AxGo5rqIEZxcF4tu2swxE0uo/vgnAL7ln4UeZiKyu9Z6dhC7oDfyfcYbvNREGEoR1q/xr1"
+  else if hostName == "laurana" then
+    "$6$qIbRypB1hH$bEgHr79qEl3r81H.AxGo5rqIEZxcF4tu2swxE0uo/vgnAL7ln4UeZiKyu9Z6dhC7oDfyfcYbvNREGEoR1q/xr1"
+  else
+    lib.assertOneOf "hostName" hostName validHostNames;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jmglov = {
@@ -133,8 +139,12 @@ in lib.recursiveUpdate {
     uid = 1002;
     extraGroups = [ "audio" "docker" "jmglov" "networkmanager" "wheel" ];
     # Generated with: mkpasswd -m sha-512
-    hashedPassword =
-      "$6$H9mwiz7dAfx$5x8LZ.CCddKuBMGrHCTH7r.5T2uGf.b1s51MT.T7MI02KYmWjQ22yrfixyRkcSpFUqoam1OiDcdprrdAMCMir.";
+    hashedPassword = if hostName == "alhana" then
+      "$6$JP.Us63iVh2VH59v$dNcJDA2N9MwRQ1FUtB4vEbEhMbYe8ukEwxejthLO9VJf4c9dzm0vUAJdcTd08Cch3mcr8A.WxhARkdYtKFLpp/"
+    else if hostName == "laurana" then
+      "$6$H9mwiz7dAfx$5x8LZ.CCddKuBMGrHCTH7r.5T2uGf.b1s51MT.T7MI02KYmWjQ22yrfixyRkcSpFUqoam1OiDcdprrdAMCMir."
+    else
+      lib.assertOneOf "hostName" hostName validHostNames;
   };
 
   users.groups.jmglov.gid = 1002;

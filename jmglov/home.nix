@@ -15,7 +15,7 @@ in lib.recursiveUpdate {
     aspellDicts.en
     awscli
     babashka-bin
-    bbin
+    # bbin  # oops, not checked in somehow
     bind
     brave
     clojure
