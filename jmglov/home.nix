@@ -51,6 +51,7 @@ in lib.recursiveUpdate {
     terraform
     unzip
     usbutils
+    wordnet # https://docs.doomemacs.org/v21.12/modules/tools/lookup/
     xclip
     yarn
     zip
