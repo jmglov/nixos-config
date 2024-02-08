@@ -2,31 +2,29 @@
 
 let
   arch = if stdenv.isAarch64 then "aarch64" else "amd64";
-  osName = if stdenv.isDarwin then
-    "macos"
-  else if stdenv.isLinux then
+  osName = if stdenv.isLinux then
     "linux"
+  else if stdenv.isDarwin then
+    "macos"
   else
-    null;
-  sha256 = assert !isNull osName;
-    {
-      linux = {
-        aarch64 =
-          "bc7e733863486b334b8bff83ba13b416800e0ce45050153cb413906b46090d68";
-        amd64 =
-          "25975d5424e7dea9fbaef5a6551ce7d3834631b5e28bdc4caf037bf45af57dfd";
-      };
-      macos = {
-        # No MacOS builds for ARM at the moment
-        # aarch64 =
-        #   "11c4b4bd0b534db1ecd732b03bc376f8b21bbda0d88cacb4bbe15b8469029123";
-        amd64 =
-          "792ade86e61703170f3de3082183173db66a9a98b11d01c95ace0235f0a5e345";
-      };
-    }.${osName}.${arch};
+    throw "Unsupported OS";
+  sha256 = {
+    linux = {
+      aarch64 =
+        "417280537b20754b675b7552d560c4c2817a93fbcaa0d51e426a1bff385e3e47";
+      amd64 =
+        "89431b0659e84a468da05ad78daf2982cbc8ea9e17f315fa2e51fecc78af7cc0";
+    };
+    macos = {
+      aarch64 =
+        "77eb9ec502260fa94008e1e43edc5678fab8dc1a5082b7eb3d28ae594ea54e09";
+      amd64 =
+        "d8854833a052bb578360294d6975b85ed917b9f86da0068fb3c263f8cbcc9e15";
+    };
+  }.${osName}.${arch};
 in stdenv.mkDerivation rec {
   pname = "babashka";
-  version = "1.1.173";
+  version = "1.3.188";
   filename = if osName == "macos" then
   # No static builds for MacOS
     "babashka-${version}-${osName}-${arch}.tar.gz"
