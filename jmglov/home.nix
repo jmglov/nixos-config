@@ -34,6 +34,7 @@ in lib.recursiveUpdate {
     kazam
     mplayer
     ncdu
+    neil
     nixfmt
     nodejs
     openjdk17
