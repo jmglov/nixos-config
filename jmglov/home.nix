@@ -30,22 +30,22 @@ in lib.recursiveUpdate {
     #(jetbrains.idea-community.override { jdk = openjdk11; })
     jless
     jq
-    kazam
+    kazam # screen recorder
     mplayer
     ncdu
-    neil
+    neil # Clojure deps tool
     nixfmt
     nodejs
     openjdk17
     pciutils
-    pinta
+    pinta # MS Paint clone
     qbittorrent
     ripgrep
     rofimoji
-    rpi-imager
+    rpi-imager # Raspberry Pi imager
     shfmt
     shellcheck
-    shotcut
+    shotcut # screetshots
     slack
     tree
     terraform
