@@ -11,8 +11,7 @@ in lib.recursiveUpdate {
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    aspell
-    aspellDicts.en
+    (aspellWithDicts (dicts: with dicts; [ en ]))
     awscli
     babashka-bin
     # bbin  # oops, not checked in somehow
