@@ -63,9 +63,9 @@ let
   slack = (self: super:
     let
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/slack/default.nix
-      version = "4.35.131"; # x86_64-linux-version
+      version = "4.36.140"; # x86_64-linux-version
       sha =
-        "0mb33vvb36aavn52yvk5fiyc8f7z56cqm1siknaap707iqqfpwpb"; # x86_64-linux-sha256
+        "0zahhhpcb1dxdhfmam32iqr5w3pspzbmcdv53ciqfnbkmwzkc3xr"; # x86_64-linux-sha256
     in {
       slack = super.slack.overrideAttrs (_: {
         src = fetchurl {
