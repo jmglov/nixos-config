@@ -5,6 +5,10 @@ let
     "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
   pkgsUnstable = import unstableTarball { config.allowUnfree = true; };
 
+  chromePkgs =
+    mkPkgsMain "2024-03-13" "a05578f52bae3119017d544f911940d0e6ee475a"
+    "sha256:0hmpv93y0h3b9kf7yv2ffzjrxpy1jkviqjjq2yvgwpk1f1azpcwg";
+
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
   bbin = pkgs.callPackage ./pkgs/bbin { };
 in lib.recursiveUpdate {
@@ -16,7 +20,7 @@ in lib.recursiveUpdate {
     babashka-bin
     # bbin  # oops, not checked in somehow
     bind
-    brave
+    chromePkgs.brave
     clojure
     discord
     emacsNativeComp
@@ -24,7 +28,7 @@ in lib.recursiveUpdate {
     ffmpeg-full
     fzf
     gimp
-    google-chrome
+    chromePkgs.google-chrome
     htop
     imagemagick
     #(jetbrains.idea-community.override { jdk = openjdk11; })
