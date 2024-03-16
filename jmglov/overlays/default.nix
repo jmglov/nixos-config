@@ -48,8 +48,8 @@ let
   discord = (self: super:
     let
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/discord/default.nix
-      version = "0.0.39";
-      sha = "sha256-KZLKBzd9hdOQkp7mN0rUZ8TbMvH2G0/AfwHPLAlDpug=";
+      version = "0.0.45";
+      sha = "sha256-dSDc5EyWk/aH5JFG6WYfJqnb0Y2/b46YcdNB2Z9wRn0=";
     in {
       discord = super.discord.overrideAttrs (_: {
         src = fetchurl {
