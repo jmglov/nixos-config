@@ -164,6 +164,7 @@ in lib.recursiveUpdate {
           "g" = "exec gimp";
           "i" = "exec idea-community";
           "k" = "exec kazam";
+          "q" = "exec qbittorrent";
           "s" = "exec slack";
           "v" = "exec protonvpn-app";
           "x" = "exec xfce4-settings-manager";
