@@ -37,6 +37,7 @@ in lib.recursiveUpdate {
     nixfmt
     nodejs
     openjdk17
+    openshot-qt # video editor
     pciutils
     pinta # MS Paint clone
     qbittorrent
