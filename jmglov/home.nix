@@ -70,6 +70,7 @@ in lib.recursiveUpdate {
     enable = true;
     bashrcExtra = ''
       export AWS_DEFAULT_REGION=eu-west-1
+      export AWS_REGION=eu-west-1
       export AWS_PROFILE=jmglov
       export JAVA_HOME="${pkgs.openjdk17}"
       export PATH="$HOME/bin:$HOME/.babashka/bin:$PATH"
