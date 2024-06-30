@@ -58,6 +58,7 @@ in lib.recursiveUpdate {
     terraform
     unzip
     usbutils
+    vorbis-tools
     wordnet # https://docs.doomemacs.org/v21.12/modules/tools/lookup/
     xclip
     yarn
