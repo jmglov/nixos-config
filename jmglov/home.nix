@@ -16,6 +16,7 @@ in lib.recursiveUpdate {
 
   home.packages = with pkgs; [
     (aspellWithDicts (dicts: with dicts; [ en ]))
+    audacity
     awscli
     babashka-bin
     # bbin  # oops, not checked in somehow
@@ -160,6 +161,7 @@ in lib.recursiveUpdate {
       };
       modes = lib.mkOptionDefault {
         exec = {
+          "a" = "exec audacity";
           "b" = "exec brave";
           "c" = "exec google-chrome-stable";
           "d" = "exec discord";
