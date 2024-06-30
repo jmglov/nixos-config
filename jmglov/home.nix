@@ -31,6 +31,7 @@ in lib.recursiveUpdate {
     gimp
     chromePkgs.google-chrome
     htop
+    id3v2 # media file metadata
     imagemagick
     #(jetbrains.idea-community.override { jdk = openjdk11; })
     jless
