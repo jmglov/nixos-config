@@ -183,6 +183,17 @@ in lib.recursiveUpdate {
           "Escape" = ''mode "default"'';
           "$mod+Shift+Return" = ''mode "default"'';
         };
+
+        resize = {
+          "Shift+Left" = "resize shrink width 5 px or 5 ppt";
+          "Shift+Right" = "resize grow width 5 px or 5 ppt";
+          "Shift+Down" = "resize grow height 5 px or 5 ppt";
+          "Shift+Up" = "resize shrink width 5 px or 5 ppt";
+          "Ctrl+Shift+Left" = "resize shrink width 1 px or 1 ppt";
+          "Ctrl+Shift+Right" = "resize grow width 1 px or 1 ppt";
+          "Ctrl+Shift+Down" = "resize grow height 1 px or 1 ppt";
+          "Ctrl+Shift+Up" = "resize shrink width 1 px or 1 ppt";
+        };
       };
       modifier = "Mod4";
       terminal = "xfce4-terminal";
