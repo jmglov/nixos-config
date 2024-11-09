@@ -40,10 +40,12 @@ in lib.recursiveUpdate {
     mplayer
     ncdu
     neil # Clojure deps tool
+    nix-index
     nixfmt
     nodejs
     openjdk17
     openshot-qt # video editor
+    patchelf
     pciutils
     pinta # MS Paint clone
     qbittorrent
