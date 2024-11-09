@@ -1,5 +1,7 @@
 { stdenv, ... }:
 
+# See https://github.com/babashka/babashka/releases for the latest
+
 let
   arch = if stdenv.isAarch64 then "aarch64" else "amd64";
   osName = if stdenv.isLinux then
@@ -11,20 +13,20 @@ let
   sha256 = {
     linux = {
       aarch64 =
-        "417280537b20754b675b7552d560c4c2817a93fbcaa0d51e426a1bff385e3e47";
+        "da4a7660ba5449922db46bc74966f2bb1041340edaf1b107fd6af66464764e97";
       amd64 =
-        "89431b0659e84a468da05ad78daf2982cbc8ea9e17f315fa2e51fecc78af7cc0";
+        "d8371697a727495749f9481414a2fdba5fe702dfc1b74a8ec58195f0a646abd5";
     };
     macos = {
       aarch64 =
-        "77eb9ec502260fa94008e1e43edc5678fab8dc1a5082b7eb3d28ae594ea54e09";
+        "9ed01a7f36e26274d1ba5c5881c04c2866caa5c4b4ed9b447cb47978f44846a6";
       amd64 =
-        "d8854833a052bb578360294d6975b85ed917b9f86da0068fb3c263f8cbcc9e15";
+        "8aaba607989944cdcef53964d7322abad7ec46db1fdf5bcc94b3bf02cdc7b4b2";
     };
   }.${osName}.${arch};
 in stdenv.mkDerivation rec {
   pname = "babashka";
-  version = "1.3.188";
+  version = "1.4.192";
   filename = if osName == "macos" then
   # No static builds for MacOS
     "babashka-${version}-${osName}-${arch}.tar.gz"
