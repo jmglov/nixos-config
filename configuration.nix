@@ -162,6 +162,7 @@ in lib.recursiveUpdate {
     docker
     git
     mkpasswd
+    ntfs3g
     parted
     steam-run-native
     steamcmd
