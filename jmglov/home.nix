@@ -49,6 +49,7 @@ in lib.recursiveUpdate {
     pciutils
     pinta # MS Paint clone
     qbittorrent
+    reaper # digital audio workstation
     ripgrep
     rofimoji
     rpi-imager # Raspberry Pi imager
@@ -66,6 +67,13 @@ in lib.recursiveUpdate {
     yarn
     zip
     zoom-us
+
+    # Audacity plugins
+    # https://plugins.audacityteam.org/realtime-effects/plugin-suites
+    calf
+    gxplugins-lv2
+    lsp-plugins
+    swh_lv2
   ];
 
   programs.bash = {
