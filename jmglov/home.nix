@@ -55,6 +55,7 @@ in lib.recursiveUpdate {
     shotcut # screetshots
     tree
     terraform
+    tor
     unzip
     usbutils
     vorbis-tools
