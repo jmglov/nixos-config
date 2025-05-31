@@ -173,6 +173,9 @@ in lib.recursiveUpdate {
     pkgsProtonVPN.protonvpn-gui
   ];
 
+  # Set the $WORDLIST variable to the location of the scowl wordlist file
+  environment.wordlist.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
