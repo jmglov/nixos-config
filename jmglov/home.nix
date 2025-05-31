@@ -1,13 +1,9 @@
 { config, lib, pkgs, hostName, ... }:
 with import ./lib { };
 let
-  unstableTarball = builtins.fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-  pkgsUnstable = import unstableTarball { config.allowUnfree = true; };
-
   chromePkgs =
-    mkPkgsMain "2024-03-13" "a05578f52bae3119017d544f911940d0e6ee475a"
-    "sha256:0hmpv93y0h3b9kf7yv2ffzjrxpy1jkviqjjq2yvgwpk1f1azpcwg";
+    mkPkgsMain "2025-05-02" "0a7b04c50f08839b0fd3b4bd60a476de6cbc9ec9"
+    "sha256:0c1mnhcrk6pvsgmr24r40hjpmldgdwalqhcvzjxnhzfg3ljqf61x";
 
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
   bbin = pkgs.callPackage ./pkgs/bbin { };
@@ -53,6 +49,7 @@ in lib.recursiveUpdate {
     ripgrep
     rofimoji
     rpi-imager # Raspberry Pi imager
+    chromePkgs.signal-desktop
     shfmt
     shellcheck
     shotcut # screetshots
