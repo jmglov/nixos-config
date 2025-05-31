@@ -9,7 +9,6 @@ let
   bbin = pkgs.callPackage ./pkgs/bbin { };
 in lib.recursiveUpdate {
   nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs; [
     (aspellWithDicts (dicts: with dicts; [ en ]))
     audacity
@@ -18,6 +17,7 @@ in lib.recursiveUpdate {
     # bbin  # oops, not checked in somehow
     bind
     chromePkgs.brave
+    calibre # ebooks
     clojure
     discord
     emacsNativeComp
