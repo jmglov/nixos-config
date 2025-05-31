@@ -56,7 +56,6 @@ in lib.recursiveUpdate {
     shfmt
     shellcheck
     shotcut # screetshots
-    slack
     tree
     terraform
     unzip
@@ -184,7 +183,8 @@ in lib.recursiveUpdate {
           "i" = "exec idea-community";
           "k" = "exec kazam";
           "q" = "exec qbittorrent";
-          "s" = "exec slack";
+          "s" = "exec signal-desktop";
+          "t" = "exec tor";
           "v" = "exec protonvpn-app";
           "x" = "exec xfce4-settings-manager";
           "z" = "exec zoom";
