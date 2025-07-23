@@ -56,6 +56,7 @@ in lib.recursiveUpdate {
     tree
     terraform
     tor
+    unrar
     unzip
     usbutils
     vorbis-tools
