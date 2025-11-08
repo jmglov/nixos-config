@@ -176,3 +176,11 @@ nixos-generate-config --root /mnt
 nix-enter
 nixos-rebuild --install-bootloader boot
 ```
+
+## Random helpful info
+
+### Reattach to tmux after reboot
+
+``` text
+tmux attach -t 0
+```
