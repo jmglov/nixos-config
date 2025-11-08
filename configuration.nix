@@ -6,7 +6,7 @@
 with import ./jmglov/lib { };
 let
   home-manager = builtins.fetchTarball
-    "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+    "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
 
   hostName = import ./hostname.nix;
   validHostNames = [ "alhana" "laurana" ];
@@ -115,9 +115,8 @@ in lib.recursiveUpdate {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # Default sound server is now PipeWire
+  hardware.pulseaudio.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

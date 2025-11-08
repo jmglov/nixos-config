@@ -63,8 +63,11 @@ reboot
 
 ## Upgrading NixOS
 
+Home Manager should also be upgraded along with NixOS. The version is defined at
+the top of `/etc/nixos/configuration.nix`.
+
 ``` text
-sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos  # or latest version
+sudo nix-channel --add https://nixos.org/channels/nixos-25.05 nixos  # or latest version
 sudo nix-channel --update
 sudo nixos-rebuild boot --upgrade
 ```

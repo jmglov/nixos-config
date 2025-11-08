@@ -1,13 +1,6 @@
 { config, lib, pkgs, hostName, ... }:
 with import ./lib { };
 let
-  chromePkgs =
-    mkPkgsMain "2025-05-02" "0a7b04c50f08839b0fd3b4bd60a476de6cbc9ec9"
-    "sha256:0c1mnhcrk6pvsgmr24r40hjpmldgdwalqhcvzjxnhzfg3ljqf61x";
-  signalPkgs =
-    mkPkgsMain "2025-07-18" "24c9f80f7baef47968d9ca156832025b74792921"
-    "sha256:181bif07ydjrk2xajssym2hxva30vpdk2cgswkzi16g3ha2jhx7x";
-
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
   bbin = pkgs.callPackage ./pkgs/bbin { };
 in lib.recursiveUpdate {
@@ -19,7 +12,7 @@ in lib.recursiveUpdate {
     babashka-bin
     # bbin  # oops, not checked in somehow
     bind
-    chromePkgs.brave
+    brave
     calibre # ebooks
     clojure
     discord
@@ -29,7 +22,7 @@ in lib.recursiveUpdate {
     flutter
     fzf
     gimp
-    chromePkgs.google-chrome
+    google-chrome
     htop
     id3v2 # media file metadata
     imagemagick
@@ -53,8 +46,8 @@ in lib.recursiveUpdate {
     reaper # digital audio workstation
     ripgrep
     rofimoji
-    rpi-imager # Raspberry Pi imager
-    signalPkgs.signal-desktop
+    ## rpi-imager # Raspberry Pi imager - currently broken?
+    signal-desktop
     shfmt
     shellcheck
     shotcut # screetshots
