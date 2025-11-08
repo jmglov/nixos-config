@@ -13,20 +13,20 @@ let
   sha256 = {
     linux = {
       aarch64 =
-        "da4a7660ba5449922db46bc74966f2bb1041340edaf1b107fd6af66464764e97";
+        "db0ce3a3e120589bce4233387d01d87a9cfd1e099e753f02c14e066635a27f0f";
       amd64 =
-        "d8371697a727495749f9481414a2fdba5fe702dfc1b74a8ec58195f0a646abd5";
+        "78bd6f9ba967afd4cfc6eb34fca0d9d6fc521c5b5243f4b1ed13ae2e45e6fe4d";
     };
     macos = {
       aarch64 =
-        "9ed01a7f36e26274d1ba5c5881c04c2866caa5c4b4ed9b447cb47978f44846a6";
+        "72c306f64446255034a7d7473caf3e19e644b1666bc50a5a1e3701c928e6d6fe";
       amd64 =
-        "8aaba607989944cdcef53964d7322abad7ec46db1fdf5bcc94b3bf02cdc7b4b2";
+        "3ec61805d070320cecfc7450c45d49f5525f7dcbfabbc26bb4e3862df08eeb9a";
     };
   }.${osName}.${arch};
 in stdenv.mkDerivation rec {
   pname = "babashka";
-  version = "1.4.192";
+  version = "1.12.207";
   filename = if osName == "macos" then
   # No static builds for MacOS
     "babashka-${version}-${osName}-${arch}.tar.gz"
