@@ -37,6 +37,7 @@ in lib.recursiveUpdate {
     jless
     jq
     kazam # screen recorder
+    libreoffice
     mplayer
     ncdu
     neil # Clojure deps tool
