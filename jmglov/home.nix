@@ -26,6 +26,7 @@ in lib.recursiveUpdate {
     emacsNativeComp
     exiftool
     ffmpeg-full
+    flutter
     fzf
     gimp
     chromePkgs.google-chrome
