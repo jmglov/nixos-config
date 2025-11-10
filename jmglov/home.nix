@@ -144,15 +144,16 @@ in lib.recursiveUpdate {
         trayOutput = "eDP-1";
       }];
       keybindings = lib.mkOptionDefault {
-        # Use pactl to adjust volume in PulseAudio.
+        # Use wpctl to adjust volume in PipeWire
+        # wpctl set-volume @DEFAULT_SINK@ .03-
         "XF86AudioRaiseVolume" =
-          "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status";
+          "exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ .1+ && $refresh_i3status";
         "XF86AudioLowerVolume" =
-          "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status";
+          "exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ .1- && $refresh_i3status";
         "XF86AudioMute" =
-          "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status";
+          "exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle && $refresh_i3status";
         "XF86AudioMicMute" =
-          "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status";
+          "exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && $refresh_i3status";
         # Gotta have screenshots!
         "Print" = "exec xfce4-screenshooter -f";
         "Shift+Print" = "exec xfce4-screenshooter -r";
@@ -167,6 +168,7 @@ in lib.recursiveUpdate {
         "${modifier}+Control+Escape" = "exec i3lock";
         # Show session dialog
         "${modifier}+Shift+e" = "exec xfce4-session-logout";
+        # Reload config: ${modifier}+Shift+c
       };
       modes = lib.mkOptionDefault {
         exec = {
