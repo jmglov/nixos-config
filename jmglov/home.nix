@@ -42,6 +42,8 @@ in lib.recursiveUpdate {
     patchelf
     pciutils
     pinta # MS Paint clone
+    python313
+    python313Packages.editorconfig
     qbittorrent
     reaper # digital audio workstation
     ripgrep
@@ -72,6 +74,8 @@ in lib.recursiveUpdate {
     lsp-plugins
     swh_lv2
   ];
+
+  editorconfig.enable = true;
 
   programs.bash = {
     enable = true;
