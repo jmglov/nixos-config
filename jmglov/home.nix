@@ -57,6 +57,7 @@ in lib.recursiveUpdate {
     unrar
     unzip
     usbutils
+    vivaldi # web browser
     vorbis-tools
     wordnet # https://docs.doomemacs.org/v21.12/modules/tools/lookup/
     xclip
@@ -186,6 +187,7 @@ in lib.recursiveUpdate {
           "t" = "exec tor";
           "v" = "exec protonvpn-app";
           "x" = "exec xfce4-settings-manager";
+          "w" = "exec vivaldi";
           "z" = "exec zoom";
           # back to normal: Enter or Escape or $mod+r
           "Return" = ''mode "default"'';
