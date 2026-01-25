@@ -175,6 +175,13 @@ in lib.recursiveUpdate {
   # Set the $WORDLIST variable to the location of the scowl wordlist file
   environment.wordlist.enable = true;
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
+    nerd-fonts.roboto-mono
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
