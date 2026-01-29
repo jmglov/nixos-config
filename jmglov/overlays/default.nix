@@ -32,6 +32,24 @@ let
       });
     });
 
+  ## Overlay needs work
+  # signal-desktop = (self: super:
+  #   let
+  #     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/si/signal-desktop/package.nix
+  #     version = "7.86.0";
+  #     sha = "sha256-TnblDCYUhwvnKiq3klMRw0+bj4hKPrwmEDzCGSLyt8I=";
+  #   in {
+  #     signal-desktop = super.signal-desktop.overrideAttrs (_: {
+  #       inherit version;
+  #       src = fetchFromGitHub {
+  #         owner = "signalapp";
+  #         repo = "Signal-Desktop";
+  #         tag = "v${version}";
+  #         hash = sha;
+  #       };
+  #     });
+  #   });
+
   slack = (self: super:
     let
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/instant-messengers/slack/default.nix

@@ -3,6 +3,9 @@ with import ./lib { };
 let
   babashka-bin = pkgs.callPackage ./pkgs/babashka-bin { };
   bbin = pkgs.callPackage ./pkgs/bbin { };
+  signalPkgs =
+    mkPkgsMain "2026-01-29" "d46694d473eefece5fd6bae2c6226cf57225da31"
+    "sha256:0ljfcwnb9sanv4v9nbxvvv95wj6k2kpmwjfgllym7b3qb0ccqafi";
 in lib.recursiveUpdate {
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -49,7 +52,7 @@ in lib.recursiveUpdate {
     ripgrep
     rofimoji
     ## rpi-imager # Raspberry Pi imager - currently broken?
-    signal-desktop
+    signalPkgs.signal-desktop
     shfmt
     shellcheck
     shotcut # screetshots
